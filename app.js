@@ -36,10 +36,10 @@
   ];
 
   var IDEAS = [
-    "A frog on lily pads catching flies with its tongue while herons hunt it",
-    "A lighthouse keeper steering ships past rocks with a rotating beam",
-    "A paper plane riding updrafts between rooftops, never touching the ground",
-    "A tea shop where you serve impatient ghosts before they fade away"
+    "A frog catching flies with its tongue while herons hunt it",
+    "A lighthouse keeper steering ships past the rocks",
+    "A paper plane riding updrafts over the rooftops",
+    "A tea shop serving impatient ghosts before they fade"
   ];
 
   var $ = function (sel) { return document.querySelector(sel); };
@@ -414,7 +414,8 @@
       var b = document.createElement("button");
       b.type = "button";
       b.className = "idea";
-      b.textContent = text.length > 54 ? text.slice(0, 53) + "\u2026" : text;
+      b.textContent = text.length > 42 ? text.slice(0, 41) + "\u2026" : text;
+      b.title = text;
       b.addEventListener("click", function () { $("#idea").value = text; say("Idea set. Make the game when ready.", ""); });
       box.appendChild(b);
     });
