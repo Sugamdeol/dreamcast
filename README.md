@@ -36,17 +36,19 @@ no retry loop.
 
 ## Models used by default
 
-`GET https://gen.pollinations.ai/v1/models` lists the default with
-`paid_only: false`:
+The model picker offers four text models. `GET https://gen.pollinations.ai/v1/models`
+lists every one of them with `paid_only: false`, so each works for a signed-in
+free user spending their own Pollen:
 
 ```json
-{"id": "openai/gpt-5.4-nano", "category": "text",
- "paid_only": false, "input_modalities": ["text", "image"], "output_modalities": ["text"],
- "supported_endpoints": ["/v1/chat/completions", "/text", "/v1/responses", "/v1/messages"]}
+{"id": "openai/gpt-5.4-nano",  "category": "text", "paid_only": false, "input_modalities": ["text", "image"], "output_modalities": ["text"], "supported_endpoints": ["/v1/chat/completions", "/text", "/v1/responses", "/v1/messages"]}
+{"id": "openai/gpt-5.4-mini",  "category": "text", "paid_only": false, "input_modalities": ["text", "image"], "output_modalities": ["text"], "supported_endpoints": ["/v1/chat/completions", "/text", "/v1/responses", "/v1/messages"]}
+{"id": "openai/gpt-5.6-luna",  "category": "text", "paid_only": false, "input_modalities": ["text", "image"], "output_modalities": ["text"], "supported_endpoints": ["/v1/chat/completions", "/text", "/v1/responses", "/v1/messages"]}
+{"id": "openai/gpt-5.3-codex", "category": "text", "paid_only": false, "input_modalities": ["text", "image"], "output_modalities": ["text"], "supported_endpoints": ["/v1/chat/completions", "/text", "/v1/responses", "/v1/messages"]}
 ```
 
 The model id is the `model` field of the `POST /v1/chat/completions` call, and
-it is one of the four entries in the `MODELS` list in `app.js`. The sign-in
+each id is one of the four entries in the `MODELS` list in `app.js`. The sign-in
 request asks for the `text` scope only, so a visitor grants exactly that.
 
 ## How this app calls Pollinations
