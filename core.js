@@ -128,7 +128,7 @@
       "  };",
       "  setTimeout(function () {",
       "    if (!reported) { send({ dreamcast: 'idle', drew: drew, thrown: thrown }); }",
-      "  }, 2600);",
+      "  }, 5000);",
       "})();"
     ].join("\n");
 

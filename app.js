@@ -195,6 +195,7 @@
     if (d.dreamcast === "running") {
       state.heard = true;
       $("#frameNote").textContent = "running";
+      addCheck("running", "the game is drawing frames of its own", true);
     } else if (d.dreamcast === "error") {
       state.heard = true;
       addCheck("running", "the running game threw: " + String(d.message || "").slice(0, 140), false);
@@ -217,8 +218,17 @@
   function addCheck(name, detail, ok) {
     var list = $("#checks");
     $("#checksBox").hidden = false;
+    /* One line per check name: a later verdict replaces an earlier one, so a
+       stale "never drew a frame" cannot sit under a game that is now running. */
+    var keep = [];
+    for (var i = 0; i < list.children.length; i += 1) {
+      if (list.children[i].getAttribute("data-check") !== name) keep.push(list.children[i]);
+    }
+    list.innerHTML = "";
+    keep.forEach(function (li) { list.appendChild(li); });
     var li = document.createElement("li");
     li.className = ok ? "good" : "bad";
+    li.setAttribute("data-check", name);
     li.textContent = name + ": " + detail;
     list.appendChild(li);
   }
